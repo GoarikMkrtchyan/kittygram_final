@@ -108,6 +108,7 @@ jobs:
           context: ./frontend/
           push: true
           tags: goarik/kittygram_frontend:latest
+
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
     runs-on: ubuntu-latest
@@ -124,7 +125,7 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: ./gateway/
+          context: ./nginx/
           push: true
           tags: goarik/kittygram_gateway:latest
 
