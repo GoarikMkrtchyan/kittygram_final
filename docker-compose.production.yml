@@ -33,6 +33,6 @@ services:
       - backend
     volumes:
       - static:/staticfiles/
-      - media:/media
+      - media:/app/media
     ports:
       - 9000:80
