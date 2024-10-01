@@ -11,7 +11,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', '7j1^hly9rezvb@te-$q_-)u97k&f3=lqld_5rkl_(w
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'projectyaptask.zapto.org', '89.169.174.201']
+ALLOWED_HOSTS = os.getenv(
+    'ALLOWED_HOSTS', 'localhost,projectyaptask.zapto.org,89.169.174.201').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
