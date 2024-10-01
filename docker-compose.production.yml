@@ -1,7 +1,7 @@
 volumes:
-  pg_data_production:
-  static_volume:
-  media_volume:
+  pg_data:
+  static:
+  media:
 
 services:
   db:
@@ -13,22 +13,26 @@ services:
   backend:
     image: goarik/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
-      - static_volume:/backend_static
-      - media_volume:/media
+      - static:/backend_static
+      - media:/app/media
 
   frontend:
     image: goarik/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/frontend_static
+      - static:/frontend_static
 
   gateway:
     image: goarik/kittygram_gateway
     env_file: .env
+    depends_on:
+      - backend
     volumes:
-      - static_volume:/staticfiles/
-      - media_volume:/media
+      - static:/staticfiles/
+      - media:/media
     ports:
       - 9000:80
